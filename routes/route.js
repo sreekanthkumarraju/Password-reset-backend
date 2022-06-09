@@ -18,7 +18,7 @@ router.post('/forgotpassword',async(req,res)=>{
       {
           res.json({
               statusCode:400,
-              message:"Emaild doesnot exist"
+              message:"Emaild does not exist"
            })
       }
 

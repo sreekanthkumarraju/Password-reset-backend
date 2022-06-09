@@ -11,12 +11,12 @@ const app=express()
 app.use(cors())
 app.use(bodyparser.json())
 
-const PORT=8000
+const port=8000
 app.use('/',router)
 
 
  //inserting users in  models/mongoose.js file
- 
+
 let dbname="register"
 let URL=`mongodb+srv://sreekanth:mJAbpJRJk3WqzCAX@cluster0.4pr0n.mongodb.net/${dbname}`
 
@@ -34,6 +34,6 @@ mongoose.connect(URL,{
  })
  //inserting users in  models/mongoose.js file
  
-app.listen(process.eventNames.PORT||PORT,()=>{
-    console.log('server is running on port',PORT)
+app.listen(process.env.PORT||port,()=>{
+    console.log('server is running on port',port)
 })
