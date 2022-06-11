@@ -66,6 +66,47 @@ router.post('/forgotpassword',async(req,res)=>{
       }
 })
 
+router.post('/register',async(req,res)=>{
+  console.log(req.body.firstName)
+ 
+  let findUsers=await userModel.findOne({emailId:req.body.emailId})
+ console.log(findUsers,'FindUSERS')
+
+ if(findUsers)
+    {
+          res.json({
+                   status:"400",
+                   message:"User already exists"
+                })
+    }
+
+    else
+       {
+         let user=new userModel({
+                     emailId:req.body.emailId,
+                     password:req.body.password
+                })
+
+          const createUser= await user.save()
+
+              try
+              {
+
+                 if(createUser)
+                  {
+                      console.log(createUser)
+                      res.send(createUser)
+                   }
+              }
+
+              catch(error)
+              {
+                   console.log(error)
+               }
+       }       
+})
+
+
  router.post('/password-reset/:id/:token',async(req,res)=>{
     try 
     {
